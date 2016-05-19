@@ -1,0 +1,536 @@
+fileFormatVersion: 2
+guid: 3579e485d180d8942bf5dc6d0842e16d
+timeCreated: 1463683980
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: UntilIFindACat_0
+    21300002: UntilIFindACat_1
+    21300004: UntilIFindACat_2
+    21300006: UntilIFindACat_3
+    21300008: UntilIFindACat_4
+    21300010: UntilIFindACat_5
+    21300012: UntilIFindACat_6
+    21300014: UntilIFindACat_7
+    21300016: UntilIFindACat_8
+    21300018: UntilIFindACat_9
+    21300020: UntilIFindACat_10
+    21300022: UntilIFindACat_11
+    21300024: UntilIFindACat_12
+    21300026: UntilIFindACat_13
+    21300028: UntilIFindACat_14
+    21300030: UntilIFindACat_15
+    21300032: UntilIFindACat_16
+    21300034: UntilIFindACat_17
+    21300036: UntilIFindACat_18
+    21300038: UntilIFindACat_19
+    21300040: UntilIFindACat_20
+    21300042: UntilIFindACat_21
+    21300044: UntilIFindACat_22
+    21300046: UntilIFindACat_23
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: UntilIFindACat_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 245
+        width: 46
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 35}
+        - {x: -23, y: 31}
+        - {x: -23, y: -35}
+        - {x: 12, y: -35}
+        - {x: 23, y: -31}
+        - {x: 23, y: 35}
+    - name: UntilIFindACat_1
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 244
+        width: 46
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 35.5}
+        - {x: -23, y: 23.5}
+        - {x: -23, y: -29.5}
+        - {x: -20, y: -35.5}
+        - {x: 19, y: -35.5}
+        - {x: 23, y: -27.5}
+        - {x: 23, y: 31.5}
+        - {x: 19, y: 35.5}
+    - name: UntilIFindACat_2
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 244
+        width: 45
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13.5, y: 35}
+        - {x: -22.5, y: 32}
+        - {x: -22.5, y: -31}
+        - {x: -16.5, y: -35}
+        - {x: 16.5, y: -35}
+        - {x: 22.5, y: -14}
+        - {x: 22.5, y: 34}
+        - {x: 21.5, y: 35}
+    - name: UntilIFindACat_3
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 244
+        width: 45
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 17.5, y: 34.5}
+        - {x: -22.5, y: 34.5}
+        - {x: -22.5, y: -33.5}
+        - {x: -16.5, y: -34.5}
+        - {x: 13.5, y: -34.5}
+        - {x: 22.5, y: -6.5}
+        - {x: 22.5, y: 24.5}
+    - name: UntilIFindACat_4
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 244
+        width: 54
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20, y: 32}
+        - {x: -27, y: 30}
+        - {x: -27, y: -32}
+        - {x: 27, y: -32}
+        - {x: 27, y: 32}
+    - name: UntilIFindACat_5
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 241
+        width: 56
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -28, y: -37.5}
+        - {x: 12, y: -37.5}
+        - {x: 28, y: -28.5}
+        - {x: 28, y: 21.5}
+        - {x: 26, y: 29.5}
+        - {x: 18, y: 37.5}
+        - {x: -24, y: 37.5}
+        - {x: -28, y: 35.5}
+    - name: UntilIFindACat_6
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 240
+        width: 54
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 37}
+        - {x: -27, y: 33}
+        - {x: -27, y: -25}
+        - {x: -18, y: -37}
+        - {x: 8, y: -37}
+        - {x: 13, y: -34}
+        - {x: 27, y: 1}
+        - {x: 27, y: 35}
+        - {x: 25, y: 37}
+    - name: UntilIFindACat_7
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 242
+        width: 67
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10.5, y: 30.5}
+        - {x: -29.5, y: 2.5}
+        - {x: -27.5, y: -2.5}
+        - {x: -23.5, y: -6.5}
+        - {x: -18.5, y: -6.5}
+        - {x: -25.5, y: -6.5}
+        - {x: -29.5, y: -7.5}
+        - {x: -33.5, y: -9.5}
+        - {x: -33.5, y: -21.5}
+        - {x: -24.5, y: -30.5}
+        - {x: 22.5, y: -30.5}
+        - {x: 33.5, y: -1.5}
+        - {x: 33.5, y: 25.5}
+        - {x: 27.5, y: 30.5}
+    - name: UntilIFindACat_8
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 165
+        width: 45
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -22.5, y: 35.5}
+        - {x: -22.5, y: -17.5}
+        - {x: -17.5, y: -35.5}
+        - {x: 18.5, y: -35.5}
+        - {x: 22.5, y: -18.5}
+        - {x: 22.5, y: 35.5}
+    - name: UntilIFindACat_9
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 164
+        width: 46
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18, y: 35.5}
+        - {x: -23, y: 28.5}
+        - {x: -23, y: -3.5}
+        - {x: -21, y: -32.5}
+        - {x: -16, y: -35.5}
+        - {x: 18, y: -35.5}
+        - {x: 23, y: -18.5}
+        - {x: 23, y: 32.5}
+        - {x: 15, y: 35.5}
+    - name: UntilIFindACat_10
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 163
+        width: 46
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -23, y: 35.5}
+        - {x: -23, y: -34.5}
+        - {x: -17, y: -35.5}
+        - {x: 16, y: -35.5}
+        - {x: 23, y: -15.5}
+        - {x: 23, y: 32.5}
+        - {x: 16, y: 35.5}
+    - name: UntilIFindACat_11
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 159
+        width: 49
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 20.5, y: -19.5}
+        - {x: 17.5, y: -18.5}
+        - {x: 22.5, y: -18.5}
+        - {x: 24.5, y: -17.5}
+        - {x: 24.5, y: 8.5}
+        - {x: 21.5, y: 33.5}
+        - {x: -24.5, y: 33.5}
+        - {x: -24.5, y: -33.5}
+        - {x: 24.5, y: -33.5}
+        - {x: 24.5, y: -25.5}
+        - {x: 23.5, y: -23.5}
+    - name: UntilIFindACat_12
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 158
+        width: 62
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 32.5}
+        - {x: -31, y: 2.5}
+        - {x: -31, y: -19.5}
+        - {x: -26, y: -32.5}
+        - {x: 20, y: -32.5}
+        - {x: 31, y: -24.5}
+        - {x: 31, y: 32.5}
+    - name: UntilIFindACat_13
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 79
+        width: 46
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17, y: 34.5}
+        - {x: -23, y: 32.5}
+        - {x: -23, y: -34.5}
+        - {x: 15, y: -34.5}
+        - {x: 23, y: -11.5}
+        - {x: 23, y: 27.5}
+        - {x: 19, y: 34.5}
+    - name: UntilIFindACat_14
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 80
+        width: 45
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18.5, y: 33.5}
+        - {x: -22.5, y: 29.5}
+        - {x: -22.5, y: -18.5}
+        - {x: -20.5, y: -31.5}
+        - {x: -17.5, y: -33.5}
+        - {x: 15.5, y: -33.5}
+        - {x: 22.5, y: -11.5}
+        - {x: 22.5, y: 28.5}
+        - {x: 12.5, y: 33.5}
+    - name: UntilIFindACat_15
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 80
+        width: 45
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18.5, y: 33.5}
+        - {x: -22.5, y: 29.5}
+        - {x: -22.5, y: -18.5}
+        - {x: -20.5, y: -31.5}
+        - {x: -17.5, y: -33.5}
+        - {x: 15.5, y: -33.5}
+        - {x: 22.5, y: -11.5}
+        - {x: 22.5, y: 28.5}
+        - {x: 12.5, y: 33.5}
+    - name: UntilIFindACat_16
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 78
+        width: 45
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -22.5, y: 34}
+        - {x: -22.5, y: -32}
+        - {x: -17.5, y: -34}
+        - {x: 16.5, y: -34}
+        - {x: 22.5, y: -15}
+        - {x: 22.5, y: 30}
+        - {x: 13.5, y: 34}
+    - name: UntilIFindACat_17
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 79
+        width: 64
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 32.5}
+        - {x: -18, y: 20.5}
+        - {x: -32, y: -8.5}
+        - {x: -32, y: -29.5}
+        - {x: -22, y: -32.5}
+        - {x: 16, y: -32.5}
+        - {x: 32, y: -1.5}
+        - {x: 32, y: 25.5}
+        - {x: 30, y: 32.5}
+    - name: UntilIFindACat_18
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 78
+        width: 61
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 22.5, y: 33.5}
+        - {x: -6.5, y: 33.5}
+        - {x: -17.5, y: 21.5}
+        - {x: -30.5, y: 0.5}
+        - {x: -30.5, y: -27.5}
+        - {x: -27.5, y: -33.5}
+        - {x: 16.5, y: -33.5}
+        - {x: 22.5, y: -30.5}
+        - {x: 30.5, y: -15.5}
+        - {x: 30.5, y: 27.5}
+    - name: UntilIFindACat_19
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 77
+        width: 69
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18.5, y: 31.5}
+        - {x: -31.5, y: 28.5}
+        - {x: -34.5, y: 11.5}
+        - {x: -34.5, y: -31.5}
+        - {x: 22.5, y: -31.5}
+        - {x: 34.5, y: -21.5}
+        - {x: 34.5, y: 31.5}
+    - name: UntilIFindACat_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 54
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 26, y: 32.5}
+        - {x: -24, y: 32.5}
+        - {x: -27, y: 22.5}
+        - {x: -27, y: -31.5}
+        - {x: -24, y: -32.5}
+        - {x: 13, y: -32.5}
+        - {x: 27, y: -23.5}
+        - {x: 27, y: 27.5}
+    - name: UntilIFindACat_21
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 54
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 33}
+        - {x: -22, y: 21}
+        - {x: -27, y: -1}
+        - {x: -27, y: -33}
+        - {x: 22, y: -33}
+        - {x: 27, y: -31}
+        - {x: 27, y: 26}
+        - {x: 22, y: 33}
+    - name: UntilIFindACat_22
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 1
+        width: 57
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15.5, y: 32}
+        - {x: -28.5, y: 6}
+        - {x: -28.5, y: -31}
+        - {x: -27.5, y: -32}
+        - {x: 15.5, y: -32}
+        - {x: 28.5, y: -11}
+        - {x: 28.5, y: 32}
+    - name: UntilIFindACat_23
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 0
+        width: 45
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -22.5, y: 31.5}
+        - {x: -22.5, y: -13.5}
+        - {x: -16.5, y: -31.5}
+        - {x: 22.5, y: -31.5}
+        - {x: 22.5, y: 31.5}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
