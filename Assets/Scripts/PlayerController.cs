@@ -6,16 +6,31 @@ public class PlayerController : MonoBehaviour {
 	//Row row row your boat, gently down the stream
 	public float speed = 3f;
 	//Working in sprites
-	private Rigidbody2D _character;
+	private Rigidbody2D _player;
 	//Where you lookin'
 	private bool _facingRight = false;
+	//Movement of the Player
+	private float _move = 0f;
 	//Animation
 	private Animator _anim;
-
+	//Holding the boxes
+	public bool isHolding{get; set;}
+	public bool isFacingRight{ get {return _facingRight;} }
+		
 	// Use this for initialization
 	void Start () {
-		_character = GetComponent<Rigidbody2D>();
+		_player = GetComponent<Rigidbody2D>();
 		_anim = GetComponent<Animator> ();
+		isHolding = false;
+		InputController.onTouchInput += OnTouchInput;
+	}
+
+	/// <summary>
+	/// Call when object is destroyed
+	/// - Remove OnTouchInput from the method list of InputController
+	/// </summary>
+	void OnDestroy(){
+		InputController.onTouchInput -= OnTouchInput;	
 	}
 
 	/**
@@ -24,45 +39,48 @@ public class PlayerController : MonoBehaviour {
 	**/
 	void FixedUpdate ()
 	{
-		float move = 0f;
-
-		/* Touch screen controls
-		if (Input.touchCount > 0) {
-
-			Touch finger = Input.GetTouch (0);
-
-			//Screen and world difference be careful of this
-			//Input = Screen, Character = world
-			Vector3 fingerPosition = Camera.main.ScreenToWorldPoint (finger.position);
-			if (fingerPosition.x > _character.transform.position.x) {
-				move = 1;
-			} else {
-				move = -1;
-			}
-		}
-		*/
-
 		//Input for testing
-		move = Input.GetAxis ("Horizontal");
+		if(Application.isEditor){
+			_move = Input.GetAxis ("Horizontal");
+		}
 			
+		Move (_move);
+		_move = 0f;
+	}
+
+	void Move(float f){
 		//We don't really care about 1 or -1 which is why we abs the value
 		//Just want to know if it's moving
-		_anim.SetFloat ("Speed", Mathf.Abs (move));
-		_character.velocity = new Vector2 (move*speed, _character.velocity.y);
+		_anim.SetFloat ("Speed", Mathf.Abs (f));
+		//Moving the character
+		_player.velocity = new Vector2 (f*speed, _player.velocity.y);
 
-		if (move > 0 && !_facingRight) {
+		if (f > 0 && !_facingRight) {
 			Flip ();
-		} else if (move < 0 && _facingRight) {
+		} else if (f < 0 && _facingRight) {
 			Flip ();
 		}
 	}
 
 	void Flip(){
-		//could be optimized
-		_facingRight = !_facingRight;
-		Vector3 theScale = transform.localScale;
-		theScale.x *= -1;
-		transform.localScale = theScale;
-		//transform.localScale *= -1 but only on x
+
+		if (!isHolding) {
+			//could be optimized
+			_facingRight = !_facingRight;
+			Vector3 theScale = transform.localScale;
+			theScale.x *= -1;
+			transform.localScale = theScale;
+			//transform.localScale *= -1 but only on x
+		}
+	}
+
+	void OnTouchInput(TouchInput touch){
+		if (touch.inType == TouchInputType.Hold) {
+			if (touch.position.x > transform.position.x) {
+				_move = 1;
+			} else {
+				_move = -1;
+			}
+		}
 	}
 }
