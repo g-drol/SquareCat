@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour {
 	//Row row row your boat, gently down the stream
 	public float speed = 3f;
 	//Working in sprites
-	//private Rigidbody2D _character;
+	private Rigidbody2D _character;
 	//Where you lookin'
 	private bool _facingRight = false;
 	//Animation
@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//_character = GetComponent<Rigidbody2D>();
+		_character = GetComponent<Rigidbody2D>();
 		_anim = GetComponent<Animator> ();
 	}
 
@@ -22,14 +22,33 @@ public class PlayerController : MonoBehaviour {
 	 * Fixed Update has regular updates on a fixed interval
 	 * You could use Time.deltaTime but not obligated to
 	**/
-	void Update ()
+	void FixedUpdate ()
 	{
-		float move = Input.GetAxis ("Horizontal");
+		float move = 0f;
+
+		/* Touch screen controls
+		if (Input.touchCount > 0) {
+
+			Touch finger = Input.GetTouch (0);
+
+			//Screen and world difference be careful of this
+			//Input = Screen, Character = world
+			Vector3 fingerPosition = Camera.main.ScreenToWorldPoint (finger.position);
+			if (fingerPosition.x > _character.transform.position.x) {
+				move = 1;
+			} else {
+				move = -1;
+			}
+		}
+		*/
+
+		//Input for testing
+		move = Input.GetAxis ("Horizontal");
+			
 		//We don't really care about 1 or -1 which is why we abs the value
 		//Just want to know if it's moving
 		_anim.SetFloat ("Speed", Mathf.Abs (move));
-		//_character.velocity = new Vector2 (move*speed, _character.velocity.y);
-		GetComponent<Rigidbody2D>().velocity = new Vector2 (move*speed, GetComponent<Rigidbody2D>().velocity.y);
+		_character.velocity = new Vector2 (move*speed, _character.velocity.y);
 
 		if (move > 0 && !_facingRight) {
 			Flip ();
