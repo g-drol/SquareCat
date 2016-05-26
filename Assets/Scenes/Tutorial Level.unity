@@ -184,7 +184,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 34524429}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GroundPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,7 +331,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 683886127}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GroundPoint (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -400,7 +400,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 946432540}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GroundPoint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1311,7 +1311,7 @@ GameObject:
   - 95: {fileID: 2027397078}
   - 114: {fileID: 2027397077}
   - 114: {fileID: 2027397083}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
