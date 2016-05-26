@@ -110,7 +110,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 20698233}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.86, y: -7.2852025, z: 0}
+  m_LocalPosition: {x: 1.93, y: -7.28, z: 0}
   m_LocalScale: {x: 2.146836, y: 2.146836, z: 0}
   m_Children: []
   m_Father: {fileID: 1299322138}
@@ -211,6 +211,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 86504507}
+  - 114: {fileID: 86504508}
   - 114: {fileID: 86504506}
   m_Layer: 0
   m_Name: Gravity
@@ -227,7 +228,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 86504505}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5bdba04150e497438e7b2bcba61c91e, type: 3}
+  m_Script: {fileID: 11500000, guid: 39dcbd275624c684aa8f140ad66b0056, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &86504507
@@ -242,6 +243,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+--- !u!114 &86504508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 86504505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e05aacf22d658949a6d1def031effc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &146188834
 GameObject:
   m_ObjectHideFlags: 0
