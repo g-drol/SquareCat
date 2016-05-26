@@ -12,18 +12,12 @@ public class GChangeController : MonoBehaviour {
 	public delegate void GravityChangeDelegate(GravityChange gravity);
 	public static event GravityChangeDelegate onGravityChange = delegate {};
 	//List of movables
-	private Rigidbody2D[] _movable;
+	private GameObject[] _movable;
 	//players
 	private Rigidbody2D _player;
 
 	void Start () {
-
-		_movable = null;
-		GameObject[] temp = GameObject.FindGameObjectsWithTag ("Movable");
-		//Getting all the rigidbodies: movable and player
-		for (int i = 0; i < temp.Length; i++){
-			_movable[i] = temp[i].GetComponent<Rigidbody2D>();
-		}
+		_movable = GameObject.FindGameObjectsWithTag ("Movable");
 		_player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Rigidbody2D>();
 	}
 
@@ -34,9 +28,8 @@ public class GChangeController : MonoBehaviour {
 	/// </summary>
 	/// <returns><c>true</c>, if they're all in place, <c>false</c> otherwise.</returns>
 	/// <param name="listToCheck">List to check.</param>
-	bool Colliding(Rigidbody2D[] listToCheck){
+	bool Colliding(GameObject[] listToCheck){
 
-		Debug.Log ("In first colliding method");
 		//Raycast in the direction of the gravity, get the collider the rest hits and then IsTouching
 		RaycastHit2D rayHit;
 
@@ -45,8 +38,11 @@ public class GChangeController : MonoBehaviour {
 
 			//Raycast in the direction of the gravity to see if they are touching the element closest to them
 			//If a box is over a box, the box under it will return false for as long as it doesn't touch a wall
-			rayHit = Physics2D.Raycast (listToCheck [i].position, Physics2D.gravity, 1f);
-			if (rayHit.collider == null || !rayHit.collider.IsTouching (listToCheck [i].GetComponent<Collider2D> ())) {
+			rayHit = Physics2D.Raycast (listToCheck [i].transform.position, Physics2D.gravity);
+
+			//DEBUGGING HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE!
+			Debug.Log (rayHit.collider.OverlapPoint(listToCheck[i].transform.position));
+			if (!rayHit.collider.IsTouching (listToCheck [i].GetComponent<BoxCollider2D> ())) {
 				return false;
 				//RayCast collider in Unity changed to ignore themselves
 				//Edit --> Project Settings --> Physics 2D --> Queries start in Collider (Unchecked)
@@ -58,7 +54,7 @@ public class GChangeController : MonoBehaviour {
 
 	/// <summary>
 	/// Ovearloading
-	/// Checking if all the rigidbodies are colliding with something
+	/// Checking if all the element is colliding with something
 	/// Prevents gravity switch in the middle of an action
 	/// Make sure gravity effect is big enough to make the switch as quick as possible
 	/// </summary>
@@ -70,8 +66,8 @@ public class GChangeController : MonoBehaviour {
 		RaycastHit2D rayHit;
 		//Raycast in the direction of the gravity to see if they are touching the element closest to them
 		//If a box is over a box, the box under it will return false for as long as it doesn't touch a wall
-		rayHit = Physics2D.Raycast (elementToCheck.position, Physics2D.gravity, 1f);
-		if (rayHit.collider == null || !rayHit.collider.IsTouching (elementToCheck.GetComponent<Collider2D> ())) {
+		rayHit = Physics2D.Raycast (elementToCheck.position, Physics2D.gravity);
+		if (!rayHit.collider.IsTouching (elementToCheck.GetComponent<Collider2D> ())) {
 			return false;
 			//RayCast collider in Unity changed to ignore themselves
 			//Edit --> Project Settings --> Physics 2D --> Queries start in Collider (Unchecked)
