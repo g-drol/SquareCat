@@ -26,7 +26,6 @@ public class GravityController : MonoBehaviour {
 
 	void Update () {
 		
-		Debug.Log (GravityControllerEvent.Colliding (_movable));
 		if (GravityControllerEvent.Colliding (_movable) && !_player.GetComponent<PlayerController>().isHolding) {
 			for (int i = 0; i < _movable.Length; i++) {
 				if (Mathf.Approximately(Physics2D.gravity.x, 0f)) {
