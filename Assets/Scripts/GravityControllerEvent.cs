@@ -36,10 +36,13 @@ public class GravityControllerEvent : MonoBehaviour {
 			//Raycast in the direction of the gravity to see if they are touching the element closest to them
 			//If a box is over a box, the box under it will return false for as long as it doesn't touch a wall
 			rayHit = Physics2D.Raycast (listToCheck [i].transform.position, Physics2D.gravity);
+
+			////WHAT THE ACTUAL HELL?
+			///Returns null when gravity scale is changed
 			if (!rayHit.collider.IsTouching (listToCheck [i].GetComponent<BoxCollider2D> ())) {
-				return false;
-				//RayCast collider in Unity changed to ignore themselves
-				//Edit --> Project Settings --> Physics 2D --> Queries start in Collider (Unchecked)
+					return false;
+					//RayCast collider in Unity changed to ignore themselves
+					//Edit --> Project Settings --> Physics 2D --> Queries start in Collider (Unchecked)
 			}
 		}
 		return true;
