@@ -28,7 +28,7 @@ public class GravityControllerEvent : MonoBehaviour {
 	/// </summary>
 	/// <returns><c>true</c>, if they're all in place, <c>false</c> otherwise.</returns>
 	/// <param name="listToCheck">List to check.</param>
-	bool Colliding(GameObject[] listToCheck){
+	public static bool Colliding(GameObject[] listToCheck){
 		//Raycast in the direction of the gravity, get the collider the rest hits and then IsTouching
 		RaycastHit2D rayHit;
 		//For loop on all the rigidBodies
@@ -53,7 +53,7 @@ public class GravityControllerEvent : MonoBehaviour {
 	/// </summary>
 	/// <returns><c>true</c>, if they're all in place, <c>false</c> otherwise.</returns>
 	/// <param name="listToCheck">List to check.</param>
-	bool Colliding(Rigidbody2D elementToCheck){
+	public static bool Colliding(Rigidbody2D elementToCheck){
 		//Raycast in the direction of the gravity, get the collider the rest hits and then IsTouching
 		RaycastHit2D rayHit;
 		//Raycast in the direction of the gravity to see if they are touching the element closest to them

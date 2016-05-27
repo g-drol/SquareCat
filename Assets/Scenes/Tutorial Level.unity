@@ -97,7 +97,7 @@ GameObject:
   - 61: {fileID: 20698237}
   - 50: {fileID: 20698236}
   m_Layer: 0
-  m_Name: MovableBlock
+  m_Name: MovableBlockBottom
   m_TagString: Movable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,14 +124,14 @@ Rigidbody2D:
   m_GameObject: {fileID: 20698233}
   m_UseAutoMass: 0
   m_Mass: 5
-  m_LinearDrag: 13
+  m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 275
+  m_GravityScale: 1
   m_IsKinematic: 0
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 5
 --- !u!61 &20698237
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -228,7 +228,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 86504505}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39dcbd275624c684aa8f140ad66b0056, type: 3}
+  m_Script: {fileID: 11500000, guid: 45d744705a206e84b8ed98144915d952, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &86504507
@@ -278,7 +278,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 146188834}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30d5a501cf7429540a586f4f6621546c, type: 3}
+  m_Script: {fileID: 11500000, guid: 7fa23feefeb81db4199608e5a4b3075f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &146188836
@@ -562,14 +562,14 @@ Rigidbody2D:
   m_GameObject: {fileID: 1250562924}
   m_UseAutoMass: 0
   m_Mass: 5
-  m_LinearDrag: 13
-  m_AngularDrag: 0.05
+  m_LinearDrag: 0
+  m_AngularDrag: 0
   m_GravityScale: 275
   m_IsKinematic: 0
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 5
 --- !u!61 &1250562928
 BoxCollider2D:
   m_ObjectHideFlags: 0

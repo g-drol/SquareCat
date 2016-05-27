@@ -43,12 +43,10 @@ public class PushPullController : MonoBehaviour {
 			_jointBoxPlayer.enabled = false;
 			_jointBoxPlayer.connectedBody = null;
 
-			if (Physics2D.gravity.x == 0f) {
-				movable.constraints = RigidbodyConstraints2D.FreezePositionX;
-				movable.constraints = RigidbodyConstraints2D.FreezeRotation;
-			} else if (Physics2D.gravity.y == 0f) {
-				movable.constraints = RigidbodyConstraints2D.FreezePositionY;
-				movable.constraints = RigidbodyConstraints2D.FreezeRotation;
+			if (Mathf.Approximately(Physics2D.gravity.x, 0f)) {
+				movable.constraints |= RigidbodyConstraints2D.FreezePositionX;
+			} else if (Mathf.Approximately(Physics2D.gravity.y, 0f)) {
+				movable.constraints |= RigidbodyConstraints2D.FreezePositionY;
 			}
 		}
 		_player.GetComponent<PlayerController> ().isHolding = false;
