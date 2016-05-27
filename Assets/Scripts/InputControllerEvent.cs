@@ -11,7 +11,7 @@ public struct TouchInput {
 	public TouchInputType inType;
 }
 	
-public class InputController : MonoBehaviour {
+public class InputControllerEvent : MonoBehaviour {
 
 	//Delegate and event
 	public delegate void TouchInputDelegate(TouchInput touchInput);

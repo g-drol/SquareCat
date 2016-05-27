@@ -10,7 +10,7 @@ public class PushPullController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		_player = GetComponent<Rigidbody2D> ();
-		InputController.onTouchInput += OnTouchInput;
+		InputControllerEvent.onTouchInput += OnTouchInput;
 	}
 
 	/// <summary>
@@ -18,7 +18,7 @@ public class PushPullController : MonoBehaviour {
 	/// - Remove OnTouchInput from the method list of InputController
 	/// </summary>
 	void OnDestroy(){
-		InputController.onTouchInput -= OnTouchInput;	
+		InputControllerEvent.onTouchInput -= OnTouchInput;	
 	}
 
 	void Grab(Rigidbody2D movable){

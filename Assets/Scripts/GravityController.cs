@@ -11,7 +11,7 @@ public class GravityController : MonoBehaviour {
 		//Getting all the rigidbodies: movable and player
 		_movable = GameObject.FindGameObjectsWithTag("Movable");
 		//Adding new method to event
-		GChangeController.onGravityChange += OnGravityChange;
+		GravityControllerEvent.onGravityChange += OnGravityChange;
 	}
 
 	/// <summary>
@@ -19,7 +19,7 @@ public class GravityController : MonoBehaviour {
 	/// - Remove OnGravityChange from the method list of GChangeController
 	/// </summary>
 	void OnDestroy(){
-		GChangeController.onGravityChange -= OnGravityChange;	
+		GravityControllerEvent.onGravityChange -= OnGravityChange;	
 	}
 
 	/// <summary>
@@ -43,7 +43,6 @@ public class GravityController : MonoBehaviour {
 	}
 
 	void OnGravityChange(GravityChange gravityChange){
-		//MakeNonKinematic();
 		Physics2D.gravity = gravityChange.nGravity;
 	}
 }

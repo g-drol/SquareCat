@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour {
 		_player = GetComponent<Rigidbody2D>();
 		_anim = GetComponent<Animator> ();
 		isHolding = false;
-		InputController.onTouchInput += OnTouchInput;
+		InputControllerEvent.onTouchInput += OnTouchInput;
 	}
 
 	/// <summary>
@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour {
 	/// - Remove OnTouchInput from the method list of InputController
 	/// </summary>
 	void OnDestroy(){
-		InputController.onTouchInput -= OnTouchInput;	
+		InputControllerEvent.onTouchInput -= OnTouchInput;	
 	}
 
 	/**
