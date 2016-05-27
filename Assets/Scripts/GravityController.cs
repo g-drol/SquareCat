@@ -27,16 +27,13 @@ public class GravityController : MonoBehaviour {
 	/// </summary>
 	/// <param name="isKinematicVar">If set to <c>true</c>, every "Movable" becomes kinematic, <c>false</c> otherwise.</param>
 	/// <param name="listToChange">List of RigidBodies</param>
-	void MakeKinematic(bool isKinematicVar, GameObject[] listToModify){
+	void MakeNonKinematic(){
 
 		Debug.Log ("in kinematic method");
-		for (int i = 0; i < listToModify.Length; i++) {
+		for (int i = 0; i < _movable.Length; i++) {
 			Debug.Log ("in for loop");
-			//Ignoring the player because the player is always non-kinematic
-			if (listToModify [i].gameObject.tag == "Movable") {
-				listToModify [i].GetComponent<Rigidbody2D>().isKinematic = isKinematicVar;
-				Debug.Log ("Changed kinematic");
-			}
+			_movable [i].gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+			Debug.Log ("Changed kinematic");
 		}
 
 	}
@@ -46,8 +43,7 @@ public class GravityController : MonoBehaviour {
 	}
 
 	void OnGravityChange(GravityChange gravityChange){
-
-		Debug.Log (_movable.Length);
+		//MakeNonKinematic();
 		Physics2D.gravity = gravityChange.nGravity;
 	}
 }

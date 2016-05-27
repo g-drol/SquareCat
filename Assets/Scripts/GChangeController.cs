@@ -22,6 +22,17 @@ public class GChangeController : MonoBehaviour {
 	}
 
 	/// <summary>
+	/// Makes gameObjects with the Movable tag Kinematic or not depending on the bool given.
+	/// </summary>
+	/// <param name="isKinematicVar">If set to <c>true</c>, every "Movable" becomes kinematic, <c>false</c> otherwise.</param>
+	/// <param name="listToChange">List of RigidBodies</param>
+	void MakeNonKinematic(bool isKinematicVar, GameObject[] listToChange){
+		for (int i = 0; i < listToChange.Length; i++) {
+			listToChange [i].gameObject.GetComponent<Rigidbody2D>().isKinematic = isKinematicVar;
+		}
+	}
+
+	/// <summary>
 	/// Checking if all the rigidbodies are colliding with something
 	/// Prevents gravity switch in the middle of an action
 	/// Make sure gravity effect is big enough to make the switch as quick as possible
@@ -33,22 +44,20 @@ public class GChangeController : MonoBehaviour {
 		//Raycast in the direction of the gravity, get the collider the rest hits and then IsTouching
 		RaycastHit2D rayHit;
 
+		//MakeNonKinematic (false, listToCheck);
+
 		//For loop on all the rigidBodies
 		for (int i = 0; i < listToCheck.Length; i++) {
 
 			//Raycast in the direction of the gravity to see if they are touching the element closest to them
 			//If a box is over a box, the box under it will return false for as long as it doesn't touch a wall
 			rayHit = Physics2D.Raycast (listToCheck [i].transform.position, Physics2D.gravity);
-
-			//DEBUGGING HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE!
-			Debug.Log (rayHit.collider.OverlapPoint(listToCheck[i].transform.position));
 			if (!rayHit.collider.IsTouching (listToCheck [i].GetComponent<BoxCollider2D> ())) {
 				return false;
 				//RayCast collider in Unity changed to ignore themselves
 				//Edit --> Project Settings --> Physics 2D --> Queries start in Collider (Unchecked)
 			}
 		}
-		Debug.Log ("Do I get here?");
 		return true;
 	}
 
@@ -84,6 +93,7 @@ public class GChangeController : MonoBehaviour {
 		//if (!Input.deviceOrientation.) {
 		//If All the movable bodies are already colliding with something
 		if(Colliding(_movable) && Colliding(_player)){
+
 				//Editor and testing purposes
 				if (Application.isEditor) {
 					if(Input.GetKey(KeyCode.I)){

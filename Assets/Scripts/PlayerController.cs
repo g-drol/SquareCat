@@ -83,4 +83,17 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 	}
+
+	//Cheating try
+	/*void OnCollisionEnter2D(Collision2D col){
+		if (col.gameObject.tag == "Movable") {
+			col.gameObject.GetComponent<Rigidbody2D> ().isKinematic = true;
+		}
+	}
+
+	void OnCollisionExit2D(Collision2D col){
+		if (col.gameObject.tag == "Movable") {
+			col.gameObject.GetComponent<Rigidbody2D> ().isKinematic = false;
+		}
+	}*/
 }
