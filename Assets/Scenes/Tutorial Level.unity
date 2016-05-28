@@ -123,10 +123,10 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 20698233}
   m_UseAutoMass: 0
-  m_Mass: 5
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 275
+  m_GravityScale: 20
   m_IsKinematic: 0
   m_Interpolate: 1
   m_SleepingMode: 1
@@ -561,10 +561,10 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1250562924}
   m_UseAutoMass: 0
-  m_Mass: 5
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 275
+  m_GravityScale: 20
   m_IsKinematic: 0
   m_Interpolate: 1
   m_SleepingMode: 1
@@ -1341,7 +1341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4843f6e6b18c9744b8fca4eea383150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 7
 --- !u!95 &2027397078
 Animator:
   serializedVersion: 3
@@ -1412,10 +1412,10 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2027397076}
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 1
+  m_GravityScale: 20
   m_IsKinematic: 0
   m_Interpolate: 1
   m_SleepingMode: 1
