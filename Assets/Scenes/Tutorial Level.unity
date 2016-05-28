@@ -96,6 +96,7 @@ GameObject:
   - 212: {fileID: 20698238}
   - 61: {fileID: 20698237}
   - 50: {fileID: 20698236}
+  - 114: {fileID: 20698235}
   m_Layer: 0
   m_Name: MovableBlockBottom
   m_TagString: Movable
@@ -110,11 +111,22 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 20698233}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.968, y: -7.278, z: 0}
+  m_LocalPosition: {x: -6.623, y: -7.279, z: 0}
   m_LocalScale: {x: 2.146836, y: 2.146836, z: 0}
   m_Children: []
   m_Father: {fileID: 1299322138}
   m_RootOrder: 0
+--- !u!114 &20698235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 20698233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 552b43721efbcde44aa14003a71c6067, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &20698236
 Rigidbody2D:
   serializedVersion: 2
@@ -534,6 +546,7 @@ GameObject:
   - 212: {fileID: 1250562929}
   - 61: {fileID: 1250562928}
   - 50: {fileID: 1250562927}
+  - 114: {fileID: 1250562926}
   m_Layer: 0
   m_Name: MovableBlock (1)
   m_TagString: Movable
@@ -553,6 +566,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1299322138}
   m_RootOrder: 1
+--- !u!114 &1250562926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1250562924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 552b43721efbcde44aa14003a71c6067, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &1250562927
 Rigidbody2D:
   serializedVersion: 2
@@ -1323,6 +1347,7 @@ GameObject:
   - 95: {fileID: 2027397078}
   - 114: {fileID: 2027397077}
   - 114: {fileID: 2027397083}
+  - 114: {fileID: 2027397084}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1420,7 +1445,7 @@ Rigidbody2D:
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &2027397082
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1444,6 +1469,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96c92df530b6edb48b5327a35d5160d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2027397084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2027397076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 552b43721efbcde44aa14003a71c6067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2104851123

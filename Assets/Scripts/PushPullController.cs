@@ -6,10 +6,12 @@ public class PushPullController : MonoBehaviour {
 	private Joint2D _jointBoxPlayer;
 	private GameObject _movable;
 	private Rigidbody2D _player;
+	private PlayerController _playerController;
 
 	// Use this for initialization
 	void Start () {
 		_player = GetComponent<Rigidbody2D> ();
+		_playerController = GetComponent<PlayerController> ();
 		InputControllerEvent.onTouchInput += OnTouchInput;
 	}
 
@@ -29,25 +31,20 @@ public class PushPullController : MonoBehaviour {
 
 		//Arranging Joint and Physics
 		//movable.isKinematic = false;
-		movable.constraints = RigidbodyConstraints2D.None;
 		movable.constraints = RigidbodyConstraints2D.FreezeRotation;
 		_jointBoxPlayer.connectedBody = movable;
 		_jointBoxPlayer.enabled = true;
 		_player.GetComponent<PlayerController> ().isHolding = true;
 	}
 
-	void LetGo(Rigidbody2D movable){
+	void LetGo(){
 		//If Joint exists and fixing values
 		if (_jointBoxPlayer != null && _jointBoxPlayer.connectedBody != null) {
 			//_jointBoxPlayer.connectedBody.isKinematic = true;
 			_jointBoxPlayer.enabled = false;
-			_jointBoxPlayer.connectedBody = null;
 
-			if (Mathf.Approximately(Physics2D.gravity.x, 0f)) {
-				movable.constraints |= RigidbodyConstraints2D.FreezePositionX;
-			} else if (Mathf.Approximately(Physics2D.gravity.y, 0f)) {
-				movable.constraints |= RigidbodyConstraints2D.FreezePositionY;
-			}
+			_jointBoxPlayer.connectedBody.constraints |= RigidbodyConstraints2D.FreezePositionX;
+			_jointBoxPlayer.connectedBody = null;
 		}
 		_player.GetComponent<PlayerController> ().isHolding = false;
 	}
@@ -58,27 +55,57 @@ public class PushPullController : MonoBehaviour {
 
 		//On first press of the h key and after
 		if (Input.GetKeyDown (KeyCode.H)) {
-			rayHit = Physics2D.Raycast (_player.transform.position, GetComponent<PlayerController> ().isFacingRight ? Vector2.right : Vector2.left, 0.75f);
+
+			Vector2 rayHitDirection = Vector2.zero;
+
+			switch (_playerController.playerOrientation) {
+			case PlayerOrientation.Down:
+				if (_playerController.isFacingRight) {
+					rayHitDirection = Vector2.right;
+				} else {
+					rayHitDirection = Vector2.left;
+				}
+				break;
+			case PlayerOrientation.Up:
+				if (_playerController.isFacingRight) {
+					rayHitDirection = Vector2.left;
+				} else {
+					rayHitDirection = Vector2.right;
+				}
+				break;
+			case PlayerOrientation.Left:
+				if (_playerController.isFacingRight) {
+					rayHitDirection = Vector2.down;
+				} else {
+					rayHitDirection = Vector2.up;
+				}
+				break;
+			case PlayerOrientation.Right:
+				if (_playerController.isFacingRight) {
+					rayHitDirection = Vector2.up;
+				} else {
+					rayHitDirection = Vector2.down;
+				}
+				break;
+			}
+
+			rayHit = Physics2D.Raycast (_player.position, rayHitDirection, 0.75f);
 			if (rayHit.rigidbody != null && rayHit.rigidbody.gameObject.tag == "Movable") {
 				Grab (rayHit.rigidbody);
 			}
 		}
 
 		if (Input.GetKeyUp(KeyCode.H)){
-			rayHit = Physics2D.Raycast (_player.transform.position, GetComponent<PlayerController> ().isFacingRight ? Vector2.right : Vector2.left, 0.75f);
-			if (rayHit.rigidbody != null && rayHit.rigidbody.gameObject.tag == "Movable") {
-				LetGo (rayHit.rigidbody);
-			}
+			LetGo();
 		}
 	}
-
 
 	void OnTouchInput(TouchInput touch){
 		if (touch.inType == TouchInputType.Tap){
 			Collider2D touchPoint = Physics2D.OverlapPoint (touch.position);
 			if(touchPoint != null && touchPoint.gameObject.tag == "Movable"){
 				if (_player.GetComponent<PlayerController> ().isHolding) {
-					LetGo (touchPoint.gameObject.GetComponent<Rigidbody2D> ());
+					LetGo ();
 				} else if (touchPoint.IsTouching(GetComponent<BoxCollider2D>())){
 					Grab (touchPoint.gameObject.GetComponent<Rigidbody2D> ());
 				}
