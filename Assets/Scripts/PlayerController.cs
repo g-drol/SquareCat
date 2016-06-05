@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum PlayerOrientation{
+//What side is the player walking on on the editor application
+public enum PlayerWallPosition{
 	Left,
 	Right,
 	Up,
@@ -14,7 +15,7 @@ public class PlayerController : MonoBehaviour {
 	public float speed = 3f;
 	//Working in sprites
 	private Rigidbody2D _player;
-	//Player's movable component
+	//Player's movable component, to know if he's grounded
 	private Movable _playerMovable;
 	//Where you lookin'
 	private bool _facingRight = false;
@@ -23,23 +24,28 @@ public class PlayerController : MonoBehaviour {
 	//Animation
 	private Animator _anim;
 	//Player rotation
-	private PlayerOrientation _playerOrientation;
-	//Holding the boxes
+	private PlayerWallPosition _playerWallPosition;
+
+	//Getters and Setters
 	public bool isHolding{get; set;}
 	public bool isFacingRight{ get {return _facingRight;} }
-	public PlayerOrientation playerOrientation{ get {return _playerOrientation;} }
+	public PlayerWallPosition playerOrientation{ get {return _playerWallPosition;} }
 		
-	// Use this for initialization
+	//Initialization
 	void Start () {
 		_player = GetComponent<Rigidbody2D>();
 		_anim = GetComponent<Animator> ();
 		_playerMovable = GetComponent<Movable>();
 		isHolding = false;
-		_playerOrientation = PlayerOrientation.Down;
+		_playerWallPosition = PlayerWallPosition.Down;
 		InputControllerEvent.onTouchInput += OnTouchInput;
 		GravityControllerEvent.onGravityChange += OnGravityChange;
 	}
 
+	/// <summary>
+	/// Raises the gravity change event. Change player orientation (what wall he is on) and player rotation.
+	/// </summary>
+	/// <param name="gravity">Gravity.</param>
 	void OnGravityChange (GravityChange gravity)
 	{
 		_player.velocity = Vector2.zero;
@@ -47,19 +53,19 @@ public class PlayerController : MonoBehaviour {
 		switch(gravity.deviceOrientation) {
 		case DeviceOrientation.LandscapeLeft:
 			_player.rotation = 0f;
-			_playerOrientation = PlayerOrientation.Down;
+			_playerWallPosition = PlayerWallPosition.Down;
 			break;
 		case DeviceOrientation.PortraitUpsideDown:
 			_player.rotation = -90f;
-			_playerOrientation = PlayerOrientation.Left;
+			_playerWallPosition = PlayerWallPosition.Left;
 			break;
 		case DeviceOrientation.LandscapeRight:
 			_player.rotation = 180f;
-			_playerOrientation = PlayerOrientation.Up;
+			_playerWallPosition = PlayerWallPosition.Up;
 			break;
 		case DeviceOrientation.Portrait:
 			_player.rotation = 90f;
-			_playerOrientation = PlayerOrientation.Right;
+			_playerWallPosition = PlayerWallPosition.Right;
 			break;
 		}
 	}
@@ -69,13 +75,10 @@ public class PlayerController : MonoBehaviour {
 	/// - Remove OnTouchInput from the method list of InputController
 	/// </summary>
 	void OnDestroy(){
-		InputControllerEvent.onTouchInput -= OnTouchInput;	
+		InputControllerEvent.onTouchInput -= OnTouchInput;
+		GravityControllerEvent.onGravityChange -= OnGravityChange;
 	}
-
-	/**
-	 * Fixed Update has regular updates on a fixed interval
-	 * You could use Time.deltaTime but not obligated to
-	**/
+		
 	void FixedUpdate ()
 	{
 		//Input for testing
@@ -84,35 +87,51 @@ public class PlayerController : MonoBehaviour {
 			_move.y = Input.GetAxis ("Vertical");
 		}
 
+		//If you're grounded and where you are determines where you move
 		if (_playerMovable.IsGrounded()) {
-			if (_playerOrientation == PlayerOrientation.Up || _playerOrientation == PlayerOrientation.Down) {
+			if (_playerWallPosition == PlayerWallPosition.Up || _playerWallPosition == PlayerWallPosition.Down) {
 				Move (_move.x);
 			} else {
 				Move (_move.y);
 			}
 		} else {
+			//Needs to be put back at 0
 			Move (0f);
 		}
-		
 
 		_move = Vector2.zero;
 	}
 
+	/// <summary>
+	/// Changing the velocity to specified f
+	/// </summary>
+	/// <param name="f">F - speed</param>
 	void Move(float f){
 		//We don't really care about 1 or -1 which is why we abs the value
-		//Just want to know if it's moving
+		//Just want to know if it's moving so we can set the animation
 		_anim.SetFloat ("Speed", Mathf.Abs (f));
 
-		if (_playerOrientation == PlayerOrientation.Up || _playerOrientation == PlayerOrientation.Down) {
+		//If your on ceiling or ground then X
+		//If your on the sides then Y
+		if (_playerWallPosition == PlayerWallPosition.Up || _playerWallPosition == PlayerWallPosition.Down) {
 			_player.velocity = new Vector2 (f*speed, _player.velocity.y);
 		} else {
 			_player.velocity = new Vector2 (_player.velocity.x, f*speed);
 		}
-			
-		if (f > 0 && !_facingRight) {
-			Flip ();
-		} else if (f < 0 && _facingRight) {
-			Flip ();
+
+		if (_playerWallPosition == PlayerWallPosition.Down || _playerWallPosition == PlayerWallPosition.Right) {
+			//This works for Down and Right wall
+			if (f > 0 && !_facingRight) {
+				Flip ();
+			} else if (f < 0 && _facingRight) {
+				Flip ();
+			}
+		} else if (_playerWallPosition == PlayerWallPosition.Up || _playerWallPosition == PlayerWallPosition.Left) {
+			if (f < 0 && !_facingRight) {
+				Flip ();
+			} else if (f > 0 && _facingRight) {
+				Flip ();
+			}
 		}
 	}
 

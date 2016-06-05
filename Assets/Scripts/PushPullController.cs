@@ -59,28 +59,28 @@ public class PushPullController : MonoBehaviour {
 			Vector2 rayHitDirection = Vector2.zero;
 
 			switch (_playerController.playerOrientation) {
-			case PlayerOrientation.Down:
+			case PlayerWallPosition.Down:
 				if (_playerController.isFacingRight) {
 					rayHitDirection = Vector2.right;
 				} else {
 					rayHitDirection = Vector2.left;
 				}
 				break;
-			case PlayerOrientation.Up:
+			case PlayerWallPosition.Up:
 				if (_playerController.isFacingRight) {
 					rayHitDirection = Vector2.left;
 				} else {
 					rayHitDirection = Vector2.right;
 				}
 				break;
-			case PlayerOrientation.Left:
+			case PlayerWallPosition.Left:
 				if (_playerController.isFacingRight) {
 					rayHitDirection = Vector2.down;
 				} else {
 					rayHitDirection = Vector2.up;
 				}
 				break;
-			case PlayerOrientation.Right:
+			case PlayerWallPosition.Right:
 				if (_playerController.isFacingRight) {
 					rayHitDirection = Vector2.up;
 				} else {
