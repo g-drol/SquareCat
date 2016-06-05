@@ -1,18 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Should be on every Movable Object including the player
+/// </summary>
 public class Movable : MonoBehaviour {
 
+	//Collider 2D of the element
 	private Collider2D _collider;
 
+	//Initializing
 	void Start()
 	{
 		_collider = GetComponent<Collider2D>();
 	}
 
+	/// <summary>
+	/// Determines whether this instance is grounded.
+	/// </summary>
+	/// <returns><c>true</c> if this instance is grounded; otherwise, <c>false</c>.</returns>
 	public bool IsGrounded()
 	{
 		Vector2[] groundPoints = new Vector2[3];
+		//Creating Ground ppints depending on the orientation of Gravity
 		switch (GravityController.orientation)
 		{
 		case DeviceOrientation.LandscapeLeft:
@@ -37,8 +47,9 @@ public class Movable : MonoBehaviour {
 			break;
 		}
 
+		//Raycast from every ground point
+		//Needed when we want to know if the movable objcet is in contact with anything
 		for (int i = 0; i < groundPoints.Length; i++) {
-			//Raycast in the direction of the gravity, get the collider the rest hits and then IsTouching
 			RaycastHit2D rayHit;
 			//Raycast in the direction of the gravity to see if they are touching the element closest to them
 			//If a box is over a box, the box under it will return false for as long as it doesn't touch a wall
@@ -49,7 +60,6 @@ public class Movable : MonoBehaviour {
 				//Edit --> Project Settings --> Physics 2D --> Queries start in Collider (Unchecked)
 			}
 		}
-
 		return false;
 	}
 }

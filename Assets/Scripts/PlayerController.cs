@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour {
 	//Getters and Setters
 	public bool isHolding{get; set;}
 	public bool isFacingRight{ get {return _facingRight;} }
-	public PlayerWallPosition playerOrientation{ get {return _playerWallPosition;} }
+	public PlayerWallPosition playerWallPosition{ get {return _playerWallPosition;} }
 		
 	//Initialization
 	void Start () {
@@ -135,8 +135,11 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Flip this instance.
+	/// </summary>
 	void Flip(){
-
+		//Don't flip if the player is holding onto a box
 		if (!isHolding) {
 			//could be optimized
 			_facingRight = !_facingRight;
@@ -147,6 +150,10 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Raises the touch input event. Allows us to know what position and what side we are on
+	/// </summary>
+	/// <param name="touch">Touch.</param>
 	void OnTouchInput(TouchInput touch){
 		if (touch.inType == TouchInputType.Hold) {
 			if (touch.position.x > transform.position.x) {
