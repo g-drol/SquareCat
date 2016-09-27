@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour {
 	//Player's movable component, to know if he's grounded
 	private Movable _playerMovable;
 	//Where you lookin'
-	private bool _facingRight = false;
+	private bool _facingRight = true;
 	//Movement of the Player
 	private Vector2 _move = Vector2.zero;
 	//Animation
