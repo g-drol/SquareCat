@@ -22,15 +22,10 @@ public class InputControllerEvent : MonoBehaviour {
 	//Constants
 	private const int kMaxNumTouches = 2;
 	private const float kMaxDistanceTap = 1f;
-	private const float kTimeforHold = 0.1f; //arbitrary
+	private const float kTimeforHold = 0.7f; //arbitrary
 
-	private bool _isHolding = false;
-
-	//Vector array of start positions
-	public Vector2 _startPosition = new Vector2();
-
-	//private Vector2 _startPosition = new Vector2[kMaxNumTouches];
-	//private bool[] _isTap = new bool[kMaxNumTouches];
+	private float _holdCounter = 0f;
+	private Vector2 _startPosition = new Vector2();
 
 	void Update(){
 
@@ -41,8 +36,6 @@ public class InputControllerEvent : MonoBehaviour {
 		mousePosition (touchInput);
 
 		if (Input.touchCount != 0) {
-
-			_isHolding = false;
 
 			for (int i = 0; i < Input.touchCount; i++) {
 
@@ -57,28 +50,34 @@ public class InputControllerEvent : MonoBehaviour {
 
 				case TouchPhase.Moved:
 					touchInput.swipeDistance = touch.deltaPosition;
-					touchInput.inType = TouchInputType.Swipe;
-					touchInput.position = touchPosition;
-					onTouchInput (touchInput);
+
+					if (touch.deltaPosition.magnitude < kMaxDistanceTap) {
+						if (_holdCounter > kTimeforHold) {
+							touchInput.inType = TouchInputType.Hold;
+						} else {
+							touchInput.inType = TouchInputType.Tap;
+						}
+					} else {
+						touchInput.inType = TouchInputType.Swipe;
+					}
 					break;
 
 				case TouchPhase.Stationary:
-					_isHolding = true;
-					//If Ended gets ignored
-					touchInput.inType = TouchInputType.Hold;
-					touchInput.position = touchPosition;
-					onTouchInput (touchInput);
-					break;
-
-				case TouchPhase.Ended:
-					if (touch.deltaTime > kTimeforHold || _isHolding)
+					_holdCounter += Time.deltaTime;
+					if (_holdCounter > kTimeforHold) {
 						touchInput.inType = TouchInputType.Hold;
-					else
+					} else {
 						touchInput.inType = TouchInputType.Tap;
-					touchInput.position = touchPosition;
-					onTouchInput (touchInput);
+					}
+					break;
+				
+				case TouchPhase.Ended:
+					_holdCounter = 0f;
 					break;
 				}
+
+				touchInput.position = touchPosition;
+				onTouchInput (touchInput);
 			}
 		}
 	}
@@ -90,21 +89,30 @@ public class InputControllerEvent : MonoBehaviour {
 		}
 
 		if (Input.GetMouseButton (0)) {
-			touchInput.inType = TouchInputType.Hold;
-			Debug.Log (touchInput.inType);
-			touchInput.position = (Vector2)Input.mousePosition;
-			Debug.Log (touchInput.position);
-			onTouchInput (touchInput);
+			_holdCounter += Time.deltaTime;
+
+			//Need this because Hold needs to be active before movement is over
+			if ((_startPosition - (Vector2)Input.mousePosition).magnitude < kMaxDistanceTap) {
+				if (_holdCounter > kTimeforHold) {
+					touchInput.inType = TouchInputType.Hold;
+				}
+			}
 		}
 	
 		if(Input.GetMouseButtonUp(0)){
 			touchInput.swipeDistance = _startPosition - (Vector2)Input.mousePosition;
-			if (touchInput.swipeDistance.Equals (Vector2.zero))
-				touchInput.inType = TouchInputType.Tap;
-			else
+
+			if (touchInput.swipeDistance.magnitude < kMaxDistanceTap) {
+				if (_holdCounter > kTimeforHold) {
+					touchInput.inType = TouchInputType.Hold;
+				} else {
+					touchInput.inType = TouchInputType.Tap;
+				}
+			} else {
 				touchInput.inType = TouchInputType.Swipe;
-			touchInput.position = (Vector2)Input.mousePosition;
-			onTouchInput (touchInput);
+			}
 		}
+		touchInput.position = (Vector2)Input.mousePosition;
+		onTouchInput (touchInput);
 	}
 }
