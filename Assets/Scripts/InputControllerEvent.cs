@@ -49,9 +49,9 @@ public class InputControllerEvent : MonoBehaviour {
 					break;
 
 				case TouchPhase.Moved:
-					touchInput.swipeDistance = touch.deltaPosition;
+					touchInput.swipeDistance = touchPosition - (Vector2)Camera.main.ScreenToWorldPoint(_startPosition) ;
 
-					if (touch.deltaPosition.magnitude < kMaxDistanceTap) {
+					if (touchInput.swipeDistance.magnitude < kMaxDistanceTap) {
 						if (_holdCounter > kTimeforHold) {
 							touchInput.inType = TouchInputType.Hold;
 						} else {
@@ -84,6 +84,8 @@ public class InputControllerEvent : MonoBehaviour {
 
 	void mousePosition(TouchInput touchInput){
 
+		touchInput.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
 		if (Input.GetMouseButtonDown (0)) {
 			_startPosition = (Vector2)Input.mousePosition;
 		}
@@ -95,12 +97,13 @@ public class InputControllerEvent : MonoBehaviour {
 			if ((_startPosition - (Vector2)Input.mousePosition).magnitude < kMaxDistanceTap) {
 				if (_holdCounter > kTimeforHold) {
 					touchInput.inType = TouchInputType.Hold;
+					onTouchInput (touchInput);
 				}
 			}
 		}
 	
 		if(Input.GetMouseButtonUp(0)){
-			touchInput.swipeDistance = _startPosition - (Vector2)Input.mousePosition;
+			touchInput.swipeDistance = Camera.main.ScreenToWorldPoint(Input.mousePosition) - Camera.main.ScreenToWorldPoint(_startPosition);
 
 			if (touchInput.swipeDistance.magnitude < kMaxDistanceTap) {
 				if (_holdCounter > kTimeforHold) {
@@ -110,9 +113,9 @@ public class InputControllerEvent : MonoBehaviour {
 				}
 			} else {
 				touchInput.inType = TouchInputType.Swipe;
+				Debug.Log (touchInput.inType);
 			}
+			onTouchInput (touchInput);
 		}
-		touchInput.position = (Vector2)Input.mousePosition;
-		onTouchInput (touchInput);
 	}
 }

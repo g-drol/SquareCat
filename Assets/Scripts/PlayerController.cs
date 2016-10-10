@@ -13,12 +13,16 @@ public class PlayerController : MonoBehaviour {
 
 	//Row row row your boat, gently down the stream
 	public float speed = 3f;
+	//Jump power
+	public float jumpForce = 1f;
 	//Working in sprites
 	private Rigidbody2D _player;
 	//Player's movable component, to know if he's grounded
 	private Movable _playerMovable;
 	//Where you lookin'
 	private bool _facingRight = true;
+	//If character is jumping
+	private bool _isJumping = false;
 	//Movement of the Player
 	private Vector2 _move = Vector2.zero;
 	//Animation
@@ -82,23 +86,22 @@ public class PlayerController : MonoBehaviour {
 	void FixedUpdate ()
 	{
 		//Input for testing
-		if(Application.isEditor){
+		/*if(Application.isEditor){
 			_move.x = Input.GetAxis ("Horizontal");
 			_move.y = Input.GetAxis ("Vertical");
-		}
+		}*/
 
 		//If you're grounded and where you are determines where you move
-		if (_playerMovable.IsGrounded()) {
+		if (_playerMovable.IsGrounded() && !_isJumping) {
 			if (_playerWallPosition == PlayerWallPosition.Up || _playerWallPosition == PlayerWallPosition.Down) {
 				Move (_move.x);
 			} else {
 				Move (_move.y);
 			}
-		} else {
+		} else if(!_isJumping) {
 			//Needs to be put back at 0
 			Move (0f);
 		}
-
 		_move = Vector2.zero;
 	}
 
@@ -111,8 +114,8 @@ public class PlayerController : MonoBehaviour {
 		//Just want to know if it's moving so we can set the animation
 		_anim.SetFloat ("Speed", Mathf.Abs (f));
 
-		//If your on ceiling or ground then X
-		//If your on the sides then Y
+		//If you're on ceiling or ground then X
+		//If you're on the sides then Y
 		if (_playerWallPosition == PlayerWallPosition.Up || _playerWallPosition == PlayerWallPosition.Down) {
 			_player.velocity = new Vector2 (f*speed, _player.velocity.y);
 		} else {
@@ -166,6 +169,18 @@ public class PlayerController : MonoBehaviour {
 			} else {
 				_move.y = -1;
 			}
+		} if (touch.inType == TouchInputType.Swipe && !_isJumping) {
+			_isJumping = true;
+			_anim.SetBool ("isJumping", true);
+			Debug.Log (touch.swipeDistance);
+			_player.AddForce (touch.swipeDistance.normalized * jumpForce);
+		}
+	}
+
+	void OnCollisionEnter2D(Collision2D collider){
+		if (_playerMovable.IsGrounded ()) {
+			_isJumping = false;
+			_anim.SetBool ("isJumping", false);
 		}
 	}
 }
