@@ -159,12 +159,13 @@ public class PlayerController : MonoBehaviour {
 	/// <param name="touch">Touch.</param>
 	void OnTouchInput(TouchInput touch){
 		if (touch.inType == TouchInputType.Hold) {
-			if (touch.position.x > transform.position.x) {
+            Vector3 holdPosition = Camera.main.ScreenToWorldPoint(touch.position);
+            if (holdPosition.x > transform.position.x) {
 				_move.x = 1;
 			} else {
 				_move.x = -1;
 			}
-			if (touch.position.y > transform.position.y) {
+            if (holdPosition.y > transform.position.y) {
 				_move.y = 1;
 			} else {
 				_move.y = -1;

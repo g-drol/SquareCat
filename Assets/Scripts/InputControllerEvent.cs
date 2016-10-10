@@ -40,7 +40,7 @@ public class InputControllerEvent : MonoBehaviour {
 			for (int i = 0; i < Input.touchCount; i++) {
 
 				touch = Input.GetTouch(i);
-				Vector2 touchPosition = Camera.main.ScreenToWorldPoint (touch.position);
+				Vector2 touchPosition = touch.position;
 
 				switch (touch.phase) {
 
@@ -49,7 +49,7 @@ public class InputControllerEvent : MonoBehaviour {
 					break;
 
 				case TouchPhase.Moved:
-					touchInput.swipeDistance = touchPosition - (Vector2)Camera.main.ScreenToWorldPoint(_startPosition) ;
+					touchInput.swipeDistance = touchPosition - _startPosition;
 
 					if (touchInput.swipeDistance.magnitude < kMaxDistanceTap) {
 						if (_holdCounter > kTimeforHold) {
@@ -84,7 +84,7 @@ public class InputControllerEvent : MonoBehaviour {
 
 	void mousePosition(TouchInput touchInput){
 
-		touchInput.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		touchInput.position = Input.mousePosition;
 
 		if (Input.GetMouseButtonDown (0)) {
 			_startPosition = (Vector2)Input.mousePosition;
@@ -94,16 +94,14 @@ public class InputControllerEvent : MonoBehaviour {
 			_holdCounter += Time.deltaTime;
 
 			//Need this because Hold needs to be active before movement is over
-			if ((_startPosition - (Vector2)Input.mousePosition).magnitude < kMaxDistanceTap) {
-				if (_holdCounter > kTimeforHold) {
-					touchInput.inType = TouchInputType.Hold;
-					onTouchInput (touchInput);
-				}
+			if (_holdCounter > kTimeforHold) {
+				touchInput.inType = TouchInputType.Hold;
+				onTouchInput (touchInput);
 			}
 		}
 	
 		if(Input.GetMouseButtonUp(0)){
-			touchInput.swipeDistance = Camera.main.ScreenToWorldPoint(Input.mousePosition) - Camera.main.ScreenToWorldPoint(_startPosition);
+            touchInput.swipeDistance = (Vector2)Input.mousePosition - _startPosition;
 
 			if (touchInput.swipeDistance.magnitude < kMaxDistanceTap) {
 				if (_holdCounter > kTimeforHold) {
