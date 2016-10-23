@@ -21,6 +21,10 @@ public class PlayerController : MonoBehaviour {
 	private Movable _playerMovable;
 	//Where you lookin'
 	private bool _facingRight = true;
+    //If jump input has been entered
+    private bool _jump = false;
+    //Direction of the jump
+    private Vector2 _jumpVector;
 	//If character is jumping
 	private bool _isJumping = false;
 	//Movement of the Player
@@ -92,17 +96,30 @@ public class PlayerController : MonoBehaviour {
 		}*/
 
         if (_playerMovable.IsGrounded ()) {
-            _isJumping = false;
-            _anim.SetBool ("isJumping", false);
+            if (_jump)
+            {
+                _isJumping = true;
+                _anim.SetBool ("isJumping", true);
+                _player.AddForce (_jumpVector * jumpForce);
+            }
+            else
+            {
+                _isJumping = false;
+                _anim.SetBool("isJumping", false);
         
-            if (_playerWallPosition == PlayerWallPosition.Up || _playerWallPosition == PlayerWallPosition.Down) {
-                Move (_move.x);
-            } else {
-                Move (_move.y);
+                if (_playerWallPosition == PlayerWallPosition.Up || _playerWallPosition == PlayerWallPosition.Down)
+                {
+                    Move(_move.x);
+                }
+                else
+                {
+                    Move(_move.y);
+                }
             }
         }
 
         _move = Vector2.zero;
+        _jump = false;
 	}
 
 	/// <summary>
@@ -171,10 +188,8 @@ public class PlayerController : MonoBehaviour {
 				_move.y = -1;
 			}
 		} if (touch.inType == TouchInputType.Swipe && !_isJumping) {
-			_isJumping = true;
-			_anim.SetBool ("isJumping", true);
-			Debug.Log (touch.swipeDistance);
-			_player.AddForce (touch.swipeDistance.normalized * jumpForce);
+            _jump = true;
+            _jumpVector = touch.swipeDistance.normalized;
 		}
 	}
 }
