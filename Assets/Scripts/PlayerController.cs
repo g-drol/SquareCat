@@ -91,18 +91,18 @@ public class PlayerController : MonoBehaviour {
 			_move.y = Input.GetAxis ("Vertical");
 		}*/
 
-		//If you're grounded and where you are determines where you move
-		if (_playerMovable.IsGrounded() && !_isJumping) {
-			if (_playerWallPosition == PlayerWallPosition.Up || _playerWallPosition == PlayerWallPosition.Down) {
-				Move (_move.x);
-			} else {
-				Move (_move.y);
-			}
-		} else if(!_isJumping) {
-			//Needs to be put back at 0
-			Move (0f);
-		}
-		_move = Vector2.zero;
+        if (_playerMovable.IsGrounded ()) {
+            _isJumping = false;
+            _anim.SetBool ("isJumping", false);
+        
+            if (_playerWallPosition == PlayerWallPosition.Up || _playerWallPosition == PlayerWallPosition.Down) {
+                Move (_move.x);
+            } else {
+                Move (_move.y);
+            }
+        }
+
+        _move = Vector2.zero;
 	}
 
 	/// <summary>
@@ -175,13 +175,6 @@ public class PlayerController : MonoBehaviour {
 			_anim.SetBool ("isJumping", true);
 			Debug.Log (touch.swipeDistance);
 			_player.AddForce (touch.swipeDistance.normalized * jumpForce);
-		}
-	}
-
-	void OnCollisionEnter2D(Collision2D collider){
-		if (_playerMovable.IsGrounded ()) {
-			_isJumping = false;
-			_anim.SetBool ("isJumping", false);
 		}
 	}
 }
