@@ -121,7 +121,7 @@ Transform:
   - {fileID: 275222179}
   - {fileID: 138868869}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!1001 &9884768
 Prefab:
   m_ObjectHideFlags: 0
@@ -1277,7 +1277,7 @@ Transform:
   - {fileID: 575510096}
   - {fileID: 1880189137}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!95 &197340909
 Animator:
   serializedVersion: 3
@@ -5802,7 +5802,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!1001 &1272676198
 Prefab:
   m_ObjectHideFlags: 0
@@ -7743,7 +7743,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!1001 &1736116406
 Prefab:
   m_ObjectHideFlags: 0
@@ -9553,7 +9553,7 @@ Transform:
   m_Children:
   - {fileID: 1160752607}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 6
 --- !u!1001 &2141592290
 Prefab:
   m_ObjectHideFlags: 0

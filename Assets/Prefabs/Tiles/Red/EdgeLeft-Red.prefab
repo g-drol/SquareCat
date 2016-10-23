@@ -22,7 +22,7 @@ GameObject:
   - 212: {fileID: 212000012547343224}
   - 68: {fileID: 68000012334649810}
   m_Layer: 0
-  m_Name: Tile (11)-Red
+  m_Name: EdgeLeft-Red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -23,7 +23,7 @@ GameObject:
   - 68: {fileID: 68000010739149150}
   - 68: {fileID: 68000013546353412}
   m_Layer: 0
-  m_Name: Top Left-Red 1
+  m_Name: TopLeftFlip-Red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
