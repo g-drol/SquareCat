@@ -19,13 +19,19 @@ public class InputControllerEvent : MonoBehaviour {
 	public delegate void TouchInputDelegate(TouchInput touchInput);
 	public static event TouchInputDelegate onTouchInput = delegate {};
 
-	//Constants
-	private const int kMaxNumTouches = 2;
-	private const float kMaxDistanceTap = 1f;
-	private const float kTimeforHold = 0.7f; //arbitrary
+	//Editable values
+    [SerializeField]
+    private int _maxNumTouches = 2;
+    [SerializeField]
+    private float _maxDistanceTap = 1f;
+    [SerializeField]
+    private float _timeforHold = 0.7f; //arbitrary
+    [SerializeField]
+    private float _newSwipeThreshold = 0.1f;
 
 	private float _holdCounter = 0f;
 	private Vector2 _startPosition = new Vector2();
+    private Vector2 _lastFramePosition;
 
 	void Update(){
 
@@ -51,8 +57,8 @@ public class InputControllerEvent : MonoBehaviour {
 				case TouchPhase.Moved:
 					touchInput.swipeDistance = touchPosition - _startPosition;
 
-					if (touchInput.swipeDistance.magnitude < kMaxDistanceTap) {
-						if (_holdCounter > kTimeforHold) {
+					if (touchInput.swipeDistance.magnitude < _maxDistanceTap) {
+						if (_holdCounter > _timeforHold) {
 							touchInput.inType = TouchInputType.Hold;
 						} else {
 							touchInput.inType = TouchInputType.Tap;
@@ -64,7 +70,7 @@ public class InputControllerEvent : MonoBehaviour {
 
 				case TouchPhase.Stationary:
 					_holdCounter += Time.deltaTime;
-					if (_holdCounter > kTimeforHold) {
+					if (_holdCounter > _timeforHold) {
 						touchInput.inType = TouchInputType.Hold;
 					} else {
 						touchInput.inType = TouchInputType.Tap;
@@ -94,8 +100,12 @@ public class InputControllerEvent : MonoBehaviour {
 			_holdCounter += Time.deltaTime;
 
 			//Need this because Hold needs to be active before movement is over
-			if (_holdCounter > kTimeforHold) {
+			if (_holdCounter > _timeforHold) {
 				touchInput.inType = TouchInputType.Hold;
+                if (Vector2.Distance(touchInput.position, _lastFramePosition) < _newSwipeThreshold)
+                {
+                    _startPosition = (Vector2)Input.mousePosition;
+                }
 				onTouchInput (touchInput);
 			}
 		}
@@ -103,8 +113,8 @@ public class InputControllerEvent : MonoBehaviour {
 		if(Input.GetMouseButtonUp(0)){
             touchInput.swipeDistance = (Vector2)Input.mousePosition - _startPosition;
 
-			if (touchInput.swipeDistance.magnitude < kMaxDistanceTap) {
-				if (_holdCounter > kTimeforHold) {
+			if (touchInput.swipeDistance.magnitude < _maxDistanceTap) {
+				if (_holdCounter > _timeforHold) {
 					touchInput.inType = TouchInputType.Hold;
 				} else {
 					touchInput.inType = TouchInputType.Tap;
@@ -115,5 +125,7 @@ public class InputControllerEvent : MonoBehaviour {
 			}
 			onTouchInput (touchInput);
 		}
+
+        _lastFramePosition = (Vector2)Input.mousePosition;
 	}
 }
