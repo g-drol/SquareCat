@@ -11,12 +11,14 @@ public enum PlayerWallPosition{
 }
 
 public class PlayerController : MonoBehaviour {
-
+    
 	//Row row row your boat, gently down the stream
 	public float speed = 3f;
 	//Jump power
 	public float jumpForce = 1f;
-	//Working in sprites
+	//Possible jump angles
+    public float[] jumpAngles = new float[3]{10f, 45f, 60f};
+    //Working in sprites
 	private Rigidbody2D _player;
 	//Player's movable component, to know if he's grounded
 	private Movable _playerMovable;
@@ -99,9 +101,55 @@ public class PlayerController : MonoBehaviour {
         if (_playerMovable.IsGrounded ()) {
             if (_jump)
             {
-                _isJumping = true;
-                _anim.SetBool ("isJumping", true);
-                _player.AddForce (_jumpVector * jumpForce);
+                Vector2 upVector = -Physics2D.gravity;
+
+                float inputAngle = Vector2.Angle(upVector, _jumpVector);
+
+                Debug.LogFormat("Input Angle: {0}", inputAngle);
+
+                if (inputAngle < 70f)
+                {
+                    float angleDifference = Mathf.Abs(inputAngle - jumpAngles[0]);
+                    float jumpAngle = jumpAngles[0];
+
+                    for (int i = 1; i < jumpAngles.Length; i++)
+                    {
+                        float newDifference = Mathf.Abs(inputAngle - jumpAngles[i]);
+                        if (newDifference < angleDifference)
+                        {
+                            angleDifference = newDifference;
+                            jumpAngle = jumpAngles[i];
+                        }
+                    }
+
+                    switch(playerWallPosition)
+                    {
+                        case PlayerWallPosition.Down:
+                            jumpAngle *= Mathf.Sign(upVector.x - _jumpVector.x);
+                            break;
+                        case PlayerWallPosition.Up:
+                            jumpAngle *= Mathf.Sign(_jumpVector.x - upVector.x);
+                            break;
+                        case PlayerWallPosition.Right:
+                            jumpAngle *= Mathf.Sign(upVector.y - _jumpVector.y);
+                            break;
+                        case PlayerWallPosition.Left:
+                            jumpAngle *= Mathf.Sign(_jumpVector.y - upVector.y);
+                            break;
+                    }
+
+                    Debug.LogFormat("Jump Angle: {0}", jumpAngle);
+
+                    Vector2 jumpVector = (Quaternion.Euler(0f, 0f, jumpAngle) * upVector);
+
+                    jumpVector.Normalize();
+
+                    Debug.LogFormat("Jump Vector: {0}", jumpVector);
+
+                    _isJumping = true;
+                    _anim.SetBool("isJumping", true);
+                    _player.AddForce(jumpVector * jumpForce);
+                }
             }
             else
             {
