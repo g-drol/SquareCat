@@ -6,7 +6,8 @@ public enum PlayerWallPosition{
 	Left,
 	Right,
 	Up,
-	Down
+	Down,
+	fi
 }
 
 public class PlayerController : MonoBehaviour {
