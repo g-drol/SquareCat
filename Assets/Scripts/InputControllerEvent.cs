@@ -21,8 +21,6 @@ public class InputControllerEvent : MonoBehaviour {
 
 	//Editable values
     [SerializeField]
-    private int _maxNumTouches = 2;
-    [SerializeField]
     private float _maxDistanceTap = 1f;
     [SerializeField]
     private float _timeforHold = 0.7f; //arbitrary

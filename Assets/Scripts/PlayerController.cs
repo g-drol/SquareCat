@@ -6,8 +6,7 @@ public enum PlayerWallPosition{
 	Left,
 	Right,
 	Up,
-	Down,
-	fi
+	Down
 }
 
 public class PlayerController : MonoBehaviour {
@@ -40,6 +39,7 @@ public class PlayerController : MonoBehaviour {
 	//Getters and Setters
 	public bool isHolding{get; set;}
 	public bool isFacingRight{ get {return _facingRight;} }
+    public bool isJumping { get { return _isJumping; } }
 	public PlayerWallPosition playerWallPosition{ get {return _playerWallPosition;} }
 		
 	//Initialization
