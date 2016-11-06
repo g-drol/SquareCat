@@ -46,19 +46,19 @@ public class GravityControllerEvent : MonoBehaviour {
 			//Editor and testing purposes
 			if (Application.isEditor) {
 				if(Input.GetKey(KeyCode.I)){
-					gravityChange.nGravity = new Vector2 (0, -1f);
+					gravityChange.nGravity = new Vector2 (0, -9.8f);
 					gravityChange.deviceOrientation = DeviceOrientation.LandscapeLeft;
 				}
 				if(Input.GetKey(KeyCode.J)){
-					gravityChange.nGravity = new Vector2 (-1f, 0);
+					gravityChange.nGravity = new Vector2 (-9.8f, 0);
 					gravityChange.deviceOrientation = DeviceOrientation.PortraitUpsideDown;
 				}
 				if(Input.GetKey(KeyCode.K)){
-					gravityChange.nGravity = new Vector2 (0, 1f);
+					gravityChange.nGravity = new Vector2 (0, 9.8f);
 					gravityChange.deviceOrientation = DeviceOrientation.LandscapeRight;
 				}
 				if(Input.GetKey(KeyCode.M)){
-					gravityChange.nGravity = new Vector2 (1f, 0);
+					gravityChange.nGravity = new Vector2 (9.8f, 0);
 					gravityChange.deviceOrientation = DeviceOrientation.Portrait;
 				}
 			}
