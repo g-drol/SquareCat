@@ -32,7 +32,8 @@ public class ClimbController : MonoBehaviour {
     {
         Debug.Log("Climb!");
 
-        _rigidbody.isKinematic = true;
+        _rigidbody.bodyType = RigidbodyType2D.Kinematic;
+        _rigidbody.simulated = false;
 
         while (Vector2.Distance(climbPoint.Start.position, _player.transform.position) > 0.1f)
         {
@@ -50,6 +51,7 @@ public class ClimbController : MonoBehaviour {
             yield return 0;
         }
 
-        _rigidbody.isKinematic = false;
+        _rigidbody.bodyType = RigidbodyType2D.Dynamic;
+        _rigidbody.simulated = true;
     }
 }
