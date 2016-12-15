@@ -32,6 +32,8 @@ public class ClimbController : MonoBehaviour {
     {
         Debug.Log("Climb!");
 
+        _rigidbody.velocity = Vector2.zero;
+
         _rigidbody.bodyType = RigidbodyType2D.Kinematic;
         _rigidbody.simulated = false;
 
